@@ -4,6 +4,8 @@ const score1 = document.querySelector('#score--0');
 const score2 = document.querySelector('#score--1');
 const cur1 = document.querySelector('#current--0');
 const cur2 = document.querySelector('#current--1');
+const p1 = document.querySelector('.player--0');
+const p2 = document.querySelector('.player--1');
 const reset = document.querySelector('.btn--new');
 const roll = document.querySelector('.btn--roll');
 const hold = document.querySelector('.btn--hold');
@@ -30,9 +32,16 @@ roll.addEventListener('click', function() {
 
     if(diceno !== 1){
         currentScore += diceno;
-        cur1.textContent = currentScore;
+        document.getElementById(`current--${activePlayer}`).textContent = currentScore;
     }else{
-
+        document.getElementById(`current--${activePlayer}`).textContent = 0;
+        currentScore = 0;
+        activePlayer = activePlayer === 0 ? 1 : 0;
+        p1.classList.toggle('player--active');
+        p2.classList.toggle('player--active');
     }
 });
 
+hold.addEventListener('click', function(){
+    
+});
