@@ -20,8 +20,9 @@ reset.addEventListener('click', function() {
     score2.textContent = 0;
     cur1.textContent = 0;
     cur2.textContent = 0;
+    
 });
-
+let scores = [0,0];
 let currentScore = 0;
 let activePlayer = 0;
 roll.addEventListener('click', function() {
@@ -43,5 +44,17 @@ roll.addEventListener('click', function() {
 });
 
 hold.addEventListener('click', function(){
-    
+    scores[activePlayer] += currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+
+    if(scores[activePlayer] >= 100){
+    document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+    }else{
+        document.getElementById(`current--${activePlayer}`).textContent = 0;
+        currentScore = 0;
+        activePlayer = activePlayer === 0 ? 1 : 0;
+        p1.classList.toggle('player--active');
+        p2.classList.toggle('player--active');
+    }
 });
